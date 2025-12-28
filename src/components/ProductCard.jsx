@@ -19,10 +19,10 @@ const ProductCard = ({ product }) => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-48 h-48 rounded-full bg-gradient-to-br from-amber-100 to-emerald-100 flex items-center justify-center">
               <div className="text-5xl">
-                {product.category === 'Malts' ? '🌾' : 
-                 product.category === 'Flour Mixes' ? '🥣' :
-                 product.category === 'Ready Mixes' ? '⚡' :
-                 product.category === 'Fruit Powders' ? '🍌' : '🥘'}
+                {product.category === 'Malts' ? '🌾' :
+                  product.category === 'Flour Mixes' ? '🥣' :
+                    product.category === 'Ready Mixes' ? '⚡' :
+                      product.category === 'Fruit Powders' ? '🍌' : '🥘'}
               </div>
             </div>
           </div>
@@ -30,15 +30,14 @@ const ProductCard = ({ product }) => {
           {/* Tags */}
           {product.tag && (
             <div className="absolute top-4 left-4">
-              <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${
-                product.tag === 'Best Seller' 
-                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white' 
+              <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${product.tag === 'Best Seller'
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white'
                   : product.tag === 'Premium'
-                  ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white'
-                  : product.tag === 'Popular'
-                  ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
-                  : 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
-              } shadow-lg`}>
+                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white'
+                    : product.tag === 'Popular'
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+                      : 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
+                } shadow-lg`}>
                 {product.tag}
               </span>
             </div>
@@ -77,17 +76,19 @@ const ProductCard = ({ product }) => {
         </Link>
 
         <p className="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[40px]">
-          {product.shortDesc}
+          {product.description || product.shortDesc || ''}
         </p>
 
         {/* Benefits */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {product.benefits.slice(0, 2).map((benefit, index) => (
-            <span key={index} className="text-xs font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-              {benefit}
-            </span>
-          ))}
-        </div>
+        {product.benefits && product.benefits.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {product.benefits.slice(0, 2).map((benefit, index) => (
+              <span key={index} className="text-xs font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                {benefit}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Price & Weight */}
         <div className="flex items-center justify-between mb-6">
